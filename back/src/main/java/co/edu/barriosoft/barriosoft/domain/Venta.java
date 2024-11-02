@@ -1,21 +1,20 @@
-package co.edu.barriosoft.domain;
+package co.edu.barriosoft.barriosoft.domain;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "ventas")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Venta {
 
 	@Id
@@ -24,17 +23,19 @@ public class Venta {
 	private Integer idVenta;
 	
 	@Column(name = "venta_producto_id")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idProducto")
 	private List<Producto> listVentaProductos;
 	
 	@Column(name = "venta_cantidad")
-	private String ventaCantidad;
+	private Integer ventaCantidad;
 	
 	@Column(name = "venta_fecha")
 	private LocalDate ventaFecha;
 	
-	@Column(name = "venta_tienda_id")
+	@ManyToOne
+	@JoinColumn(name = "venta_tienda_id", referencedColumnName = "tienda_id")
 	private Tienda ventaTienda;
 	
 	@Column(name = "venta_estado")
-	private Boolean venta_estado;
+	private Boolean ventaEstado;
 }

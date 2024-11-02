@@ -1,18 +1,17 @@
-package co.edu.barriosoft.domain;
+package co.edu.barriosoft.barriosoft.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "productos")
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Producto {
 
 	@Id
@@ -26,11 +25,13 @@ public class Producto {
 	@Column(name = "producto_descripcion")
 	private String productoDescripcion;
 	
-	@Column(name = "producto_proveedor_id")
+	@ManyToOne
+	@JoinColumn(name = "producto_proveedor_id", referencedColumnName = "proveedor_id")
 	private Proveedor productoProveedor;
-	
-	@Column(name = "producto_unidad_id")
-	private Unidad unidadProducyo;
+
+	@ManyToOne
+	@JoinColumn(name = "producto_unidad_id", referencedColumnName = "unidad_id")
+	private Unidad unidadProducto;
 	
 	@Column(name = "producto_estado")
 	private Boolean estadoProducto;
