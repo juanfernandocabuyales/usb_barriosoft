@@ -11,28 +11,33 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.Instant;
+
 @Data
-@Entity
-@Table(name = "tiendas")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "tiendas")
 public class Tienda {
 
 	@Id
-	@Column(name = "tienda_id",nullable = false)
+	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idTienda;
-	
-	@Column(name = "tienda_nombre")
-	private String nombreTienda;
-	
-	@Column(name = "tienda_direccion")
-	private String direccionTienda;
-	
-	@Column(name = "tienda_telefono")
-	private String telefonoTienda;
-	
-	@Column(name = "tienda_estado")
-	private Boolean tiendaEstado;
+	private Integer id;
+
+	@Column(length = 255, name = "nombre", nullable = true)
+	private String nombre;
+
+	@Column(length = 255, name = "direccion", nullable = true)
+	private String direccion;
+
+	@Column(length = 255, name = "telefono", nullable = true)
+	private String telefono;
+
+	@Column(name = "estado", nullable = true)
+	private Boolean estado;
+
+	@Column(name = "fecha_creacion", nullable = true)
+	private Instant fecha_creacion;
 }

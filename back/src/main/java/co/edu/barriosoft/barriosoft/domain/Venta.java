@@ -1,5 +1,7 @@
 package co.edu.barriosoft.barriosoft.domain;
 
+import java.math.BigDecimal;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,32 +12,36 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@Entity
-@Table(name = "ventas")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "ventas")
 public class Venta {
 
 	@Id
-	@Column(name = "venta_id",nullable = false)
+	@Column(nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idVenta;
-	
-	@Column(name = "venta_producto_id")
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "idProducto")
-	private List<Producto> listVentaProductos;
-	
-	@Column(name = "venta_cantidad")
-	private Integer ventaCantidad;
-	
-	@Column(name = "venta_fecha")
-	private LocalDate ventaFecha;
-	
-	@ManyToOne
-	@JoinColumn(name = "venta_tienda_id", referencedColumnName = "tienda_id")
-	private Tienda ventaTienda;
-	
-	@Column(name = "venta_estado")
-	private Boolean ventaEstado;
+	private Integer id;
+
+	@Column(length = 255, name = "numero", nullable = true)
+	private String numero;
+
+	@Column(name = "cantidad_productos", nullable = true)
+	private Integer cantidad_productos;
+
+	@Column(name = "total_sin_iva", precision = 18, scale = 2, nullable = true)
+	private BigDecimal total_sin_iva;
+
+	@Column(name = "total_con_iva", precision = 18, scale = 2, nullable = true)
+	private BigDecimal total_con_iva;
+
+	@Column(name = "fecha_creacion", nullable = true)
+	private Instant fecha_creacion;
+
+	@Column(name = "usuario_creacion", nullable = true)
+	private Integer usuario_creacion;
+
+	@Column(name = "estado", nullable = true)
+	private Boolean estado;
 }
