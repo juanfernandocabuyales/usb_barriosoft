@@ -9,31 +9,46 @@ import java.util.List;
 
 public class ProveedorMapper {
 
-    public static ProveedorDto domainToDto(Proveedor proveedor){
+    public static ProveedorDto domainToDTO(Proveedor proveedor){
         return ProveedorDto.builder()
-                .idProveedor(proveedor.getIdProveedor())
-                .nombreProveedor(proveedor.getNombreProveedor())
-                .telefonoProveedor(proveedor.getTelefonoProveedor())
-                .direccionProveedor(proveedor.getDireccionProveedor())
-                .estadoProveedor(proveedor.getEstadoProveedor())
+                .id(proveedor.getId())
+                .nit(proveedor.getNit())
+                .razon_social(proveedor.getRazon_social())
+                .telefono((proveedor.getTelefono()))
+                .direccion(proveedor.getDireccion())
+                .fecha_creacion(proveedor.getFecha_creacion())
+                .estado(proveedor.getEstado())
                 .build();
     }
 
-    public static Proveedor dtoToDomain(ProveedorDto proveedorDto){
+    public static Proveedor dTOToDomain(ProveedorDto proveedorDTO){
         return Proveedor.builder()
-                .idProveedor(proveedorDto.getIdProveedor())
-                .nombreProveedor(proveedorDto.getNombreProveedor())
-                .telefonoProveedor(proveedorDto.getTelefonoProveedor())
-                .direccionProveedor(proveedorDto.getDireccionProveedor())
-                .estadoProveedor(proveedorDto.getEstadoProveedor())
+                .id(proveedorDTO.getId())
+                .nit(proveedorDTO.getNit())
+                .razon_social(proveedorDTO.getRazon_social())
+                .telefono((proveedorDTO.getTelefono()))
+                .direccion(proveedorDTO.getDireccion())
+                .fecha_creacion(proveedorDTO.getFecha_creacion())
+                .estado(proveedorDTO.getEstado())
                 .build();
     }
 
-    public static List<ProveedorDto> domainToDtoList(List<Proveedor> proveedors){
-        return proveedors.stream().map(ProveedorMapper::domainToDto).toList();
+    public static List<ProveedorDto> domainDTOList(List<Proveedor> proveedors){
+        return proveedors.stream().map(ProveedorMapper::domainToDTO).toList();
     }
 
-    public static List<Proveedor> dtoToDomainList(List<ProveedorDto> proveedorDtos){
-        return proveedorDtos.stream().map(ProveedorMapper::dtoToDomain).toList();
+    public static List<Proveedor> dTOToDomainList(List<ProveedorDto> proveedorDTOs){
+        return  proveedorDTOs.stream().map(ProveedorMapper::dTOToDomain).toList();
     }
+
+    /*public static Proveedor createProveedorRequestToDomain(CreateProveedorRequest createProveedorRequest){
+        return Proveedor.builder()
+                .nit(createProveedorRequest.getNit())
+                .razon_social(createProveedorRequest.getRazon_social())
+                .telefono(createProveedorRequest.getTelefono())
+                .direccion(createProveedorRequest.getDireccion())
+                .fecha_creacion(createProveedorRequest.getFecha_creacion())
+                .estado(createProveedorRequest.getEstado())
+                .build();
+    }*/
 }

@@ -10,35 +10,43 @@ import java.util.List;
 
 public class VentaMapper {
 
-    public static VentaDto domainToDto(Venta venta){
+    public static VentaDto domainToDTO(Venta venta){
         return VentaDto.builder()
-                .idVenta(venta.getIdVenta())
-                .ventaCantidad(venta.getVentaCantidad())
-                .ventaFecha(venta.getVentaFecha())
-                .idVentaTienda(null == venta.getVentaTienda() ? null : venta.getVentaTienda().getIdTienda())
-                .ventaEstado(venta.getVentaEstado())
-                .listIdProductos(obtenerIdProductos(venta.getListVentaProductos()))
+                .id(venta.getId())
+                .numero(venta.getNumero())
+                .cantidad_productos(venta.getCantidad_productos())
+                .total_sin_iva(venta.getTotal_sin_iva())
+                .total_con_iva(venta.getTotal_con_iva())
+                .fecha_creacion(venta.getFecha_creacion())
+                .usuario_creacion(venta.getUsuario_creacion())
+                .estado(venta.getEstado())
                 .build();
     }
 
-    private static Venta dtoToDomain(VentaDto ventaDto){
+    public static Venta dTOToDomain(VentaDto ventaDTO){
         return Venta.builder()
-                .idVenta(ventaDto.getIdVenta())
-                .ventaCantidad(ventaDto.getVentaCantidad())
-                .ventaFecha(ventaDto.getVentaFecha())
-                .ventaEstado(ventaDto.getVentaEstado())
+                .id(ventaDTO.getId())
+                .numero(ventaDTO.getNumero())
+                .cantidad_productos(ventaDTO.getCantidad_productos())
+                .total_sin_iva(ventaDTO.getTotal_sin_iva())
+                .total_con_iva(ventaDTO.getTotal_con_iva())
+                .fecha_creacion(ventaDTO.getFecha_creacion())
+                .usuario_creacion(ventaDTO.getUsuario_creacion())
+                .estado(ventaDTO.getEstado())
                 .build();
     }
 
-    private static List<Integer> obtenerIdProductos(List<Producto> productos){
+    public static List<VentaDto> domainDTOList(List<Venta> ventas){
+        return ventas.stream().map(VentaMapper::domainToDTO).toList();
+    }
+
+    public static List<Venta> dTOToDomainList(List<VentaDto>ventaDTOs){
+        return ventaDTOs.stream().map(VentaMapper:: dTOToDomain).toList();
+    }
+
+   /* private static List<Integer> obtenerIdProductos(List<Producto> productos){
         return productos.stream().map(Producto::getIdProducto).toList();
-    }
+    }*/
 
-    public static List<VentaDto> domainToDtoList(List<Venta> ventas){
-        return ventas.stream().map(VentaMapper::domainToDto).toList();
-    }
 
-    public static List<Venta> dtoToDomainList(List<VentaDto> ventaDtos){
-        return ventaDtos.stream().map(VentaMapper::dtoToDomain).toList();
-    }
 }

@@ -6,18 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Instant;
-
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TiendaDto {
+public class CargueDto {
 
     private Integer id;
-    private String nombre;
-    private String direccion;
-    private String telefono;
-    private Boolean estado;
+    private Integer creado_por;
     private Instant fecha_creacion;
-
+    private Boolean estado;
+    private Integer proveedorId;
 }
+
+
+
