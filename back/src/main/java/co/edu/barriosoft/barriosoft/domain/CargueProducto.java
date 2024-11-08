@@ -1,9 +1,6 @@
 package co.edu.barriosoft.barriosoft.domain;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,11 +17,9 @@ import java.util.Date;
 public class CargueProducto {
 
     @Id
-    @Column(name="id_cargue")
-    private Integer idCargue;
-
-    @Column(name="id_producto")
-    private Integer idProducto;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
     private Integer cantidad;
 
@@ -33,6 +28,15 @@ public class CargueProducto {
 
     @Column(name="fecha_cargue_inventario")
     private Date fechaCargueInventario;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto",referencedColumnName = "id")
+    private Producto producto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_cargue",referencedColumnName = "id")
+    private Cargue cargue;
+
 
 
 }

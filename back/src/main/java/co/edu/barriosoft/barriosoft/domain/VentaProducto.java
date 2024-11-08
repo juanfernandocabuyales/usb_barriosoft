@@ -18,19 +18,29 @@ import java.util.Date;
 public class VentaProducto {
 
     @Id
-    @Column(name="id_venta")
-    private Integer idVenta;
-
-    @Column(name="id_producto")
-    private Integer idProducto;
-
-    @Column(name="id_precio")
-    private Integer idPrecio;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
     private Integer cantidad;
+
+    private Double total;
 
     @Column(name="fecha_creacion")
     private Date fechaCreacion;
 
     private boolean estado;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_venta",referencedColumnName = "id")
+    private Venta venta;
+
+    @ManyToOne
+    @JoinColumn(name = "id_producto",referencedColumnName = "id")
+    private Producto producto;
+
+    @ManyToOne
+    @JoinColumn(name = "id_precio",referencedColumnName = "id")
+    private Precio precio;
 }
