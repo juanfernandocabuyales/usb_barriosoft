@@ -2,6 +2,7 @@ package co.edu.barriosoft.barriosoft.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,8 +17,9 @@ import java.util.Date;
 @NoArgsConstructor
 @Entity
 @Table(name = "cargues_productos")
-
 public class CargueProducto {
+
+    @Id
     @Column(name="id_cargue")
     private Integer idCargue;
 

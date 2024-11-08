@@ -1,10 +1,13 @@
 package co.edu.barriosoft.barriosoft.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -15,22 +18,21 @@ import lombok.NoArgsConstructor;
 public class Inventario {
 
     @Id
-    @Column(name = "inventario_id",nullable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idInventario;
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @Column(name = "id", nullable = false)
+    private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "inventario_producto_id", referencedColumnName = "producto_id")
-    private Producto productoInventario;
+    @Size(max = 255)
+    @Column(name = "lote")
+    private String lote;
 
-    @Column(name = "inventario_cantidad_disponible")
-    private Integer cantidadDisponibleInventario;
+    @Column(name = "cantidad")
+    private Integer cantidad;
 
-    @ManyToOne
-    @JoinColumn(name = "inventario_unidad_id", referencedColumnName = "unidad_id")
-    private Unidad unidadInventario;
+    @Column(name = "fecha_actualizacion")
+    private LocalDate fechaActualizacion;
 
-    @ManyToOne
-    @JoinColumn(name = "inventario_tienda_id", referencedColumnName = "tienda_id")
-    private Tienda tiendaInventario;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "productosid", nullable = false)
+    private Producto producto;
 }

@@ -6,9 +6,14 @@ import lombok.Data;
 @Data
 @Builder
 public class InventarioDto {
+
     private Integer idInventario;
+
+    private String lote;
+
+    private Integer cantidad;
+
+    private String fechaActualizacion;
+
     private Integer idProducto;
-    private Integer cantidadDisponibleInventario;
-    private Integer idUnidad;
-    private Integer idTienda;
 }

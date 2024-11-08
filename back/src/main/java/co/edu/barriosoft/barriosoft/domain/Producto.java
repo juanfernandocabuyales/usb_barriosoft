@@ -1,10 +1,13 @@
 package co.edu.barriosoft.barriosoft.domain;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -15,24 +18,40 @@ import lombok.NoArgsConstructor;
 public class Producto {
 
 	@Id
-	@Column(name = "producto_id",nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer idProducto;
-	
-	@Column(name = "producto_nombre")
-	private String nombreProducto;
-	
-	@Column(name = "producto_descripcion")
-	private String productoDescripcion;
-	
-	@ManyToOne
-	@JoinColumn(name = "producto_proveedor_id", referencedColumnName = "proveedor_id")
-	private Proveedor productoProveedor;
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@Column(name = "id", nullable = false)
+	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "producto_unidad_id", referencedColumnName = "unidad_id")
-	private Unidad unidadProducto;
-	
-	@Column(name = "producto_estado")
-	private Boolean estadoProducto;
+	@JoinColumn(name = "tiendasid", referencedColumnName = "id")
+	private Tienda tienda;
+
+	@ManyToOne
+	@JoinColumn(name = "proveedoresid", referencedColumnName = "id")
+	private Proveedor proveedor;
+
+	@Size(max = 255)
+	@Column(name = "codigo_externo")
+	private String codigoExterno;
+
+	@Size(max = 255)
+	@Column(name = "codigo_interno")
+	private String codigoInterno;
+
+	@Size(max = 255)
+	@Column(name = "descripcion")
+	private String descripcion;
+
+	@Column(name = "precio_actual")
+	private Double precioActual;
+
+	@Column(name = "estado")
+	private Boolean estado;
+
+	@Column(name = "fecha_creacion")
+	private LocalDate fechaCreacion;
+
+	@ManyToOne
+	@JoinColumn(name = "usuario_creacion", referencedColumnName = "id")
+	private Usuario usuarioCreacion;
 }

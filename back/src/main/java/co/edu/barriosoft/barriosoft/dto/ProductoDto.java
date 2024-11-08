@@ -8,10 +8,24 @@ import lombok.Data;
 @Data
 @Builder
 public class ProductoDto {
+
     private Integer idProducto;
-    private String nombreProducto;
-    private String productoDescripcion;
-    private Integer idProveedor;
-    private Integer idUnidad;
+
+    private String codigoExterno;
+
+    private String codigoInterno;
+
+    private String descripcion;
+
+    private Double precioActual;
+
     private Boolean estadoProducto;
+
+    private String fechaCreacion;
+
+    private Long idUsuarioCreacion;
+
+    private Long idTienda;
+
+    private Long idProveedor;
 }

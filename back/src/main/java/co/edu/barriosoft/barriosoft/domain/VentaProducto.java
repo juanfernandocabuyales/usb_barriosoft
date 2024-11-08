@@ -16,6 +16,8 @@ import java.util.Date;
 @Table(name = "ventas_producto")
 
 public class VentaProducto {
+
+    @Id
     @Column(name="id_venta")
     private Integer idVenta;
 
