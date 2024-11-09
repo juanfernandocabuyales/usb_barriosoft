@@ -36,8 +36,10 @@ public class Precio {
     @Column(name="fecha_creacion")
     private Date fechaCreacion;
 
+    @Column
     private boolean estado;
 
+    @Column
     @OneToOne
     @JoinColumn(name = "id_producto",referencedColumnName = "id")
     private Producto producto;
