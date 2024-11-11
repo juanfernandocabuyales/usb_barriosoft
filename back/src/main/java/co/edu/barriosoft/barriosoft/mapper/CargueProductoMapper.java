@@ -6,9 +6,10 @@ import co.edu.barriosoft.barriosoft.dto.CargueProductoDTO;
 import co.edu.barriosoft.barriosoft.dto.PrecioDTO;
 
 import java.util.Date;
+import java.util.List;
 
 public class CargueProductoMapper {
-    public CargueProductoDTO domaintToDTO(CargueProducto cargueProducto){
+    public static CargueProductoDTO domainToDTO(CargueProducto cargueProducto){
         return CargueProductoDTO.builder()
                 .id(cargueProducto.getId())
                 .cantidad(cargueProducto.getCantidad())
@@ -18,7 +19,21 @@ public class CargueProductoMapper {
                 .cargueId(cargueProducto.getCargue().getId())
                 .build();
     }
-    public CargueProducto dTOTodomain(CargueProductoDTO cargueProductoDTO){
-        return null;
+    public static CargueProducto dTOTodomain(CargueProductoDTO cargueProducto){
+        return CargueProducto.builder()
+                .id(cargueProducto.getId())
+                .cantidad(cargueProducto.getCantidad())
+                .cargueInventario(cargueProducto.isCargueInventario())
+                .fechaCargueInventario(cargueProducto.getFechaCargueInventario())
+                .build();
     }
+    public static List<CargueProductoDTO> domainToDTOList(List<CargueProducto> productos){
+        return productos.stream().map(CargueProductoMapper::domainToDTO).toList();
+
+    }
+    public static List<CargueProducto> dTOTodomainList(List<CargueProductoDTO> productos){
+        return productos.stream().map(CargueProductoMapper::dTOTodomain).toList();
+
+    }
+
 }
