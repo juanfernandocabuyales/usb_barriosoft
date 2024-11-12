@@ -1,6 +1,8 @@
 package co.edu.barriosoft.barriosoft.mapper;
 
 import co.edu.barriosoft.barriosoft.domain.Precio;
+import co.edu.barriosoft.barriosoft.domain.Producto;
+import co.edu.barriosoft.barriosoft.domain.Proveedor;
 import co.edu.barriosoft.barriosoft.dto.PrecioDTO;
 
 import java.util.ArrayList;
@@ -28,6 +30,7 @@ public class PrecioMapper {
                 .fechaDesde(precioDTO.getFechaDesde())
                 .fechaHasta(precioDTO.getFechaHasta())
                 .precio(precioDTO.getPrecio())
+                .producto(Producto.builder().id(precioDTO.getProductoId().intValue()).build())
                 .build();
     }
     public static List<PrecioDTO> domainToDTOList(List<Precio> precios){

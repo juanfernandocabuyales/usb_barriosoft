@@ -1,8 +1,6 @@
 package co.edu.barriosoft.barriosoft.mapper;
 
-import co.edu.barriosoft.barriosoft.domain.CargueProducto;
-import co.edu.barriosoft.barriosoft.domain.Venta;
-import co.edu.barriosoft.barriosoft.domain.VentaProducto;
+import co.edu.barriosoft.barriosoft.domain.*;
 import co.edu.barriosoft.barriosoft.dto.CargueProductoDTO;
 import co.edu.barriosoft.barriosoft.dto.VentaProductoDTO;
 
@@ -29,7 +27,9 @@ public class VentaProductoMapper {
                 .total(ventaProducto.getTotal())
                 .fechaCreacion(ventaProducto.getFechaCreacion())
                 .estado(ventaProducto.isEstado())
-                .venta(ventaProducto.getVenta())
+                .producto(Producto.builder().id(ventaProducto.getProductoId().intValue()).build())
+                .precio(Precio.builder().id(ventaProducto.getPrecioId().intValue()).build())
+                .venta(Venta.builder().id(ventaProducto.getVenta().getId().intValue()).build())
                 .build();
     }
     public static List<VentaProductoDTO> domainToDTOList(List<VentaProducto> ventaProductos){
