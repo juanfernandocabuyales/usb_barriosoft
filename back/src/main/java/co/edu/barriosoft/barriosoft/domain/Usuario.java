@@ -49,6 +49,6 @@ public class Usuario {
     private Boolean estado;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "tiendasid", nullable = false)
+    @JoinColumn(name = "id_tienda", nullable = false)
     private Tienda tienda;
 }

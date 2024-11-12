@@ -33,6 +33,6 @@ public class Inventario {
     private LocalDate fechaActualizacion;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "productosid", nullable = false)
+    @JoinColumn(name = "id_producto", nullable = false)
     private Producto producto;
 }

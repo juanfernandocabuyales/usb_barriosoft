@@ -23,12 +23,16 @@ public class Producto {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "tiendasid", referencedColumnName = "id")
+	@JoinColumn(name = "id_tienda", referencedColumnName = "id")
 	private Tienda tienda;
 
 	@ManyToOne
-	@JoinColumn(name = "proveedoresid", referencedColumnName = "id")
+	@JoinColumn(name = "id_proveedor", referencedColumnName = "id")
 	private Proveedor proveedor;
+
+	@OneToOne
+	@JoinColumn(name = "id_precio", referencedColumnName = "id")
+	private Precio precio;
 
 	@Size(max = 255)
 	@Column(name = "codigo_externo")

@@ -17,7 +17,7 @@ public class PrecioMapper {
                .fechaCreacion(precio.getFechaCreacion())
                .fechaDesde(precio.getFechaDesde())
                .fechaHasta(precio.getFechaHasta())
-               .precio(precio.getPrecio())
+               .precio(precio.getPrecioValor())
                .productoId(precio.getProducto()==null?null:precio.getProducto().getId())
                .build();
     }
@@ -29,10 +29,11 @@ public class PrecioMapper {
                 .fechaCreacion(precioDTO.getFechaCreacion())
                 .fechaDesde(precioDTO.getFechaDesde())
                 .fechaHasta(precioDTO.getFechaHasta())
-                .precio(precioDTO.getPrecio())
+                .precioValor(precioDTO.getPrecio())
                 .producto(Producto.builder().id(precioDTO.getProductoId().intValue()).build())
                 .build();
     }
+
     public static List<PrecioDTO> domainToDTOList(List<Precio> precios){
         //Opcon 1: seria una opcion clasica
         /*List<PrecioDTO> preciosDTO = new ArrayList<>();

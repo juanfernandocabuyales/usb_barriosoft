@@ -18,7 +18,7 @@ public class VentaProductoDTO {
     private Double total;
     private Date fechaCreacion;
     private boolean estado;
-    private Venta venta;
+    private Integer ventaId;
     private Integer productoId;
     private Integer precioId;
 }

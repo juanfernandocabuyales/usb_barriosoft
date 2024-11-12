@@ -15,7 +15,7 @@ public class VentaProductoMapper {
                 .total(ventaProducto.getTotal())
                 .fechaCreacion(ventaProducto.getFechaCreacion())
                 .estado(ventaProducto.isEstado())
-                .venta(ventaProducto.getVenta())
+                .ventaId(ventaProducto.getVenta().getId())
                 .productoId(ventaProducto.getProducto().getId())
                 .precioId(ventaProducto.getPrecio().getId())
                 .build();
@@ -29,7 +29,7 @@ public class VentaProductoMapper {
                 .estado(ventaProducto.isEstado())
                 .producto(Producto.builder().id(ventaProducto.getProductoId().intValue()).build())
                 .precio(Precio.builder().id(ventaProducto.getPrecioId().intValue()).build())
-                .venta(Venta.builder().id(ventaProducto.getVenta().getId().intValue()).build())
+                .venta(Venta.builder().id(ventaProducto.getVentaId().intValue()).build())
                 .build();
     }
     public static List<VentaProductoDTO> domainToDTOList(List<VentaProducto> ventaProductos){

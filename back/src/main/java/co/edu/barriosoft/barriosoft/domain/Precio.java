@@ -22,7 +22,12 @@ public class Precio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private float precio;
+    @OneToOne
+    @JoinColumn(name = "id_producto",referencedColumnName = "id")
+    private Producto producto;
+
+    @Column(name="precio")
+    private float precioValor;
 
     @Column(name="fecha_desde")
     private Date fechaDesde;
@@ -39,10 +44,8 @@ public class Precio {
     @Column
     private boolean estado;
 
-    @Column
-    @OneToOne
-    @JoinColumn(name = "id_producto",referencedColumnName = "id")
-    private Producto producto;
+
+
 
 
 }
