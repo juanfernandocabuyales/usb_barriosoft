@@ -1,0 +1,19 @@
+insert into precios(id_producto,precio,fecha_desde,fecha_hasta,creado_por,fecha_creacion,estado) values(1,11000,CURRENT_DATE,CURRENT_DATE,1,CURRENT_DATE,true);
+insert into tiendas (nombre,direccion,telefono,estado,fecha_creacion) values('tienda1','direccion1','telefono1',true,Now());
+insert into proveedores (nit,razon_social,telefono,direccion,fecha_creacion,estado) values('nit1','razon_social1','telefono1','direccion1',Now(),true);
+insert into productos (id_tienda,id_proveedor,id_precio,codigo_externo,codigo_interno,descripcion,precio_actual,fecha_creacion,estado) values(1,1,1,'codigo_externo_1','codigo_interno_2','descripcion1',1000,Now(),true);
+insert into ventas (numero,cantidad_productos,total_sin_iva,total_con_iva,fecha_creacion,usuario_creacion,estado) values('123',1,1000,1100,Now(),1,true);
+insert into ventas_producto (id_venta,id_producto,id_precio,cantidad,total,fecha_creacion,estado) values(1,1,1,2,1000,Now(),true);
+insert into cargues(id_proveedor,creado_por,fecha_creacion,estado) values(1,1,Now(),true);
+insert into cargues_productos (id_cargue,id_producto,cantidad,cargue_inventario,fecha_cargue_inventario) values(1,1,1,false,Now());
+
+
+
+select * from precios;
+select * from tiendas;
+select * from proveedores p;
+select * from productos p2;
+select * from ventas_producto vp;
+select * from ventas v;
+select * from cargues c ;
+select * from cargues_productos cp;
