@@ -4,9 +4,13 @@ import co.edu.barriosoft.barriosoft.domain.Precio;
 import co.edu.barriosoft.barriosoft.domain.Producto;
 import co.edu.barriosoft.barriosoft.domain.Proveedor;
 import co.edu.barriosoft.barriosoft.dto.PrecioDTO;
+import co.edu.barriosoft.barriosoft.dto.request.CreatePrecioRequest;
+import co.edu.barriosoft.barriosoft.utils.Constants;
+import org.yaml.snakeyaml.scanner.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class PrecioMapper {
     public static PrecioDTO domainToDTO(Precio precio){
@@ -52,5 +56,17 @@ public class PrecioMapper {
         //Opcion 2: se puede usar un stream()
         return precios.stream().map(PrecioMapper::dTOTodomain).toList();
 
+    }
+    public static Precio createPrecioRequestToDomain(CreatePrecioRequest createPrecioRequest){
+
+
+        return Precio.builder()
+                .precioValor(createPrecioRequest.getPrecio())
+                .fechaDesde(createPrecioRequest.getFechaDesde())
+                .fechaHasta(createPrecioRequest.getFechaHasta())
+                .creadoPor(createPrecioRequest.getCreadoPor())
+                .producto(Producto.builder().id(createPrecioRequest.getProductoId().intValue()).build())
+                .estado(Constants.ESTADO_ACTIVO)
+                .build();
     }
 }

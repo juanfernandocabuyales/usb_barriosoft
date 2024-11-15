@@ -1,11 +1,12 @@
 package co.edu.barriosoft.barriosoft.controller;
 
 import co.edu.barriosoft.barriosoft.dto.PrecioDTO;
+import co.edu.barriosoft.barriosoft.dto.request.CreatePrecioRequest;
 import co.edu.barriosoft.barriosoft.mapper.PrecioMapper;
 import co.edu.barriosoft.barriosoft.repository.PrecioRepository;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import co.edu.barriosoft.barriosoft.service.PrecioService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,9 +14,11 @@ import java.util.List;
 @RequestMapping("/precio")
 public class PrecioController {
     private final PrecioRepository precioRepository;
+    private final PrecioService precioService;
 
-    public PrecioController(PrecioRepository precioRepository) {
+    public PrecioController(PrecioRepository precioRepository, PrecioService precioService) {
         this.precioRepository = precioRepository;
+        this.precioService = precioService;
     }
 
     @GetMapping(value = "/ping")
@@ -28,4 +31,10 @@ public class PrecioController {
     public List<PrecioDTO> getPrecios(){
         return PrecioMapper.domainToDTOList(precioRepository.findAll());
     }
+    @PostMapping("/add")
+    public ResponseEntity<PrecioDTO> crearPrecio(@RequestBody CreatePrecioRequest createPrecioRequest) throws Exception{
+        PrecioDTO precioDTORepose = precioService.CrearPrecio(createPrecioRequest);
+        return ResponseEntity.ok(precioDTORepose);
+    }
+
 }
